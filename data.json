@@ -1,0 +1,62 @@
+```json
+{
+  "personnes": [
+    {"id": "P001", "prenom": "Dimitrios", "nom": "K.", "role": "RME Area Manager", "email": "dimitrios@amazon.com", "site": "DIF3", "date_arrivee": "15/03/2021", "statut": "Actif"},
+    {"id": "P002", "prenom": "Lucas", "nom": "M.", "role": "RME Senior Tech", "email": "lucas.m@amazon.com", "site": "DIF3", "date_arrivee": "02/09/2022", "statut": "Actif"},
+    {"id": "P003", "prenom": "Sarah", "nom": "B.", "role": "RMET", "email": "sarah.b@amazon.com", "site": "DIF3", "date_arrivee": "10/01/2023", "statut": "Actif"},
+    {"id": "P004", "prenom": "Mehdi", "nom": "A.", "role": "RMET", "email": "mehdi.a@amazon.com", "site": "DIF3", "date_arrivee": "15/06/2023", "statut": "Actif"},
+    {"id": "P005", "prenom": "Julie", "nom": "P.", "role": "RMET", "email": "julie.p@amazon.com", "site": "DIF3", "date_arrivee": "03/03/2024", "statut": "Actif"},
+    {"id": "P006", "prenom": "Thomas", "nom": "R.", "role": "Apprenti", "email": "thomas.r@amazon.com", "site": "DIF3", "date_arrivee": "20/05/2024", "statut": "Actif"}
+  ],
+  "competences": [
+    {"id": "S001", "nom": "LOTO", "categorie": "Securite", "validite_mois": 12, "lien_formation": "https://formation.amazon.com/loto"},
+    {"id": "S002", "nom": "Travail en hauteur", "categorie": "Securite", "validite_mois": 24, "lien_formation": "https://formation.amazon.com/hauteur"},
+    {"id": "S003", "nom": "Habilitation B2V", "categorie": "Electrique", "validite_mois": 36, "lien_formation": "https://formation.amazon.com/b2v"},
+    {"id": "S004", "nom": "Habilitation BR", "categorie": "Electrique", "validite_mois": 36, "lien_formation": "https://formation.amazon.com/br"},
+    {"id": "S005", "nom": "Automates (PLC)", "categorie": "Electrique", "validite_mois": 0, "lien_formation": "https://formation.amazon.com/plc"},
+    {"id": "S006", "nom": "Premiers secours (SST)", "categorie": "Securite", "validite_mois": 24, "lien_formation": "https://formation.amazon.com/sst"},
+    {"id": "S007", "nom": "Soudure", "categorie": "Mecanique", "validite_mois": 0, "lien_formation": "https://formation.amazon.com/soudure"},
+    {"id": "S008", "nom": "Pneumatique", "categorie": "Mecanique", "validite_mois": 0, "lien_formation": "https://formation.amazon.com/pneumatique"},
+    {"id": "S009", "nom": "Hydraulique", "categorie": "Mecanique", "validite_mois": 0, "lien_formation": "https://formation.amazon.com/hydraulique"},
+    {"id": "S010", "nom": "Maintenance convoyeurs", "categorie": "Mecanique", "validite_mois": 0, "lien_formation": "https://formation.amazon.com/convoyeurs"},
+    {"id": "S011", "nom": "CACES R489", "categorie": "Logistique", "validite_mois": 60, "lien_formation": "https://formation.amazon.com/caces"},
+    {"id": "S012", "nom": "Monitron", "categorie": "Predictif", "validite_mois": 0, "lien_formation": "https://formation.amazon.com/monitron"}
+  ],
+  "matrice": [
+    {"id": "M001", "id_personne": "P001", "nom_personne": "Dimitrios K.", "id_competence": "S001", "nom_competence": "LOTO", "niveau": "Expert", "date_obtention": "15/03/2025", "date_expiration": "15/03/2026", "statut": "Valide"},
+    {"id": "M002", "id_personne": "P002", "nom_personne": "Lucas M.", "id_competence": "S001", "nom_competence": "LOTO", "niveau": "Expert", "date_obtention": "10/09/2025", "date_expiration": "10/09/2026", "statut": "Valide"},
+    {"id": "M003", "id_personne": "P003", "nom_personne": "Sarah B.", "id_competence": "S001", "nom_competence": "LOTO", "niveau": "Intermediaire", "date_obtention": "16/05/2024", "date_expiration": "16/05/2025", "statut": "Expire"},
+    {"id": "M004", "id_personne": "P004", "nom_personne": "Mehdi A.", "id_competence": "S001", "nom_competence": "LOTO", "niveau": "Expert", "date_obtention": "29/07/2025", "date_expiration": "29/07/2026", "statut": "Expire bientot"},
+    {"id": "M005", "id_personne": "P005", "nom_personne": "Julie P.", "id_competence": "S002", "nom_competence": "Travail en hauteur", "niveau": "Intermediaire", "date_obtention": "12/07/2024", "date_expiration": "12/07/2026", "statut": "Expire bientot"},
+    {"id": "M006", "id_personne": "P006", "nom_personne": "Thomas R.", "id_competence": "S001", "nom_competence": "LOTO", "niveau": "Debutant", "date_obtention": "07/08/2025", "date_expiration": "07/08/2026", "statut": "Expire bientot"},
+    {"id": "M007", "id_personne": "P001", "nom_personne": "Dimitrios K.", "id_competence": "S002", "nom_competence": "Travail en hauteur", "niveau": "Expert", "date_obtention": "01/01/2025", "date_expiration": "01/01/2027", "statut": "Valide"},
+    {"id": "M008", "id_personne": "P001", "nom_personne": "Dimitrios K.", "id_competence": "S003", "nom_competence": "Habilitation B2V", "niveau": "Expert", "date_obtention": "10/06/2024", "date_expiration": "10/06/2027", "statut": "Valide"},
+    {"id": "M009", "id_personne": "P002", "nom_personne": "Lucas M.", "id_competence": "S010", "nom_competence": "Maintenance convoyeurs", "niveau": "Expert", "date_obtention": "15/10/2023", "date_expiration": "", "statut": "Valide"},
+    {"id": "M010", "id_personne": "P002", "nom_personne": "Lucas M.", "id_competence": "S011", "nom_competence": "CACES R489", "niveau": "Expert", "date_obtention": "20/01/2023", "date_expiration": "20/01/2028", "statut": "Valide"},
+    {"id": "M011", "id_personne": "P003", "nom_personne": "Sarah B.", "id_competence": "S003", "nom_competence": "Habilitation B2V", "niveau": "Expert", "date_obtention": "05/03/2024", "date_expiration": "05/03/2027", "statut": "Valide"},
+    {"id": "M012", "id_personne": "P004", "nom_personne": "Mehdi A.", "id_competence": "S007", "nom_competence": "Soudure", "niveau": "Expert", "date_obtention": "20/08/2023", "date_expiration": "", "statut": "Valide"},
+    {"id": "M013", "id_personne": "P005", "nom_personne": "Julie P.", "id_competence": "S005", "nom_competence": "Automates (PLC)", "niveau": "Expert", "date_obtention": "15/04/2024", "date_expiration": "", "statut": "Valide"},
+    {"id": "M014", "id_personne": "P005", "nom_personne": "Julie P.", "id_competence": "S012", "nom_competence": "Monitron", "niveau": "Expert", "date_obtention": "01/06/2024", "date_expiration": "", "statut": "Valide"},
+    {"id": "M015", "id_personne": "P006", "nom_personne": "Thomas R.", "id_competence": "S003", "nom_competence": "Habilitation B2V", "niveau": "Intermediaire", "date_obtention": "01/06/2024", "date_expiration": "01/06/2027", "statut": "Valide"},
+    {"id": "M016", "id_personne": "P001", "nom_personne": "Dimitrios K.", "id_competence": "S012", "nom_competence": "Monitron", "niveau": "Expert", "date_obtention": "01/01/2024", "date_expiration": "", "statut": "Valide"},
+    {"id": "M017", "id_personne": "P004", "nom_personne": "Mehdi A.", "id_competence": "S011", "nom_competence": "CACES R489", "niveau": "Expert", "date_obtention": "10/03/2023", "date_expiration": "10/03/2028", "statut": "Valide"},
+    {"id": "M018", "id_personne": "P003", "nom_personne": "Sarah B.", "id_competence": "S004", "nom_competence": "Habilitation BR", "niveau": "Intermediaire", "date_obtention": "12/02/2024", "date_expiration": "12/02/2027", "statut": "Valide"},
+    {"id": "M019", "id_personne": "P001", "nom_personne": "Dimitrios K.", "id_competence": "S004", "nom_competence": "Habilitation BR", "niveau": "Expert", "date_obtention": "15/05/2024", "date_expiration": "15/05/2027", "statut": "Valide"},
+    {"id": "M020", "id_personne": "P002", "nom_personne": "Lucas M.", "id_competence": "S002", "nom_competence": "Travail en hauteur", "niveau": "Intermediaire", "date_obtention": "05/11/2024", "date_expiration": "05/11/2026", "statut": "Valide"}
+  ],
+  "alertes": [
+    {"id": "A001", "nom_personne": "Sarah B.", "competence": "LOTO", "date_expiration": "16/05/2025", "jours_restants": -402, "email_envoye": "Oui", "date_envoi": "15/04/2025"},
+    {"id": "A002", "nom_personne": "Julie P.", "competence": "Travail en hauteur", "date_expiration": "12/07/2026", "jours_restants": 20, "email_envoye": "Oui", "date_envoi": "22/06/2026"},
+    {"id": "A003", "nom_personne": "Mehdi A.", "competence": "LOTO", "date_expiration": "29/07/2026", "jours_restants": 37, "email_envoye": "Oui", "date_envoi": "22/06/2026"},
+    {"id": "A004", "nom_personne": "Thomas R.", "competence": "LOTO", "date_expiration": "07/08/2026", "jours_restants": 46, "email_envoye": "Non", "date_envoi": ""}
+  ],
+  "sites": ["DIF3", "DPF1", "DPF2", "DWL1", "DBG2", "DLP2"],
+  "config": {
+    "cluster": "Cluster 3",
+    "jours_rappel": 30,
+    "email_manager": "dimitrios@amazon.com",
+    "lien_application": "",
+    "destinataires_supplementaires": ["dimitrios@amazon.com"],
+    "modele_email": "Bonjour {nom},\n\nVotre certification \"{skill}\" expire le {date_expiration}.\n\nRenouvelez votre certification ici :\n{lien_formation}\n\nAccedez a l'application Skill Matrix :\n{lien_application}\n\nCordialement,\nL'equipe RME Cluster 3"
+  }
+}
