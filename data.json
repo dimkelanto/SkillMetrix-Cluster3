@@ -1,4 +1,3 @@
-```json
 {
   "personnes": [
     {"id": "P001", "prenom": "Dimitrios", "nom": "K.", "role": "RME Area Manager", "email": "dimitrios@amazon.com", "site": "DIF3", "date_arrivee": "15/03/2021", "statut": "Actif"},
