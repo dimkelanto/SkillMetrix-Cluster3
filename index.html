@@ -1,0 +1,1248 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+body {
+  background: #f9f9f9;
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #111;
+}
+
+/* Top Header */
+.top-header {
+  background: #0f1b2d;
+  color: #fff;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-header .brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.top-header .amazon-logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.top-header .rme-badge {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(255,255,255,0.1);
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+.top-header .cluster-badge {
+  background: #0066cc;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* Site Selector */
+input[name="site"] { display: none; }
+
+.site-bar {
+  background: #1a2940;
+  padding: 0 24px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+}
+
+.site-bar label {
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #8899aa;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.site-bar label:hover { color: #ccc; }
+
+#site-global:checked ~ .site-bar label[for="site-global"],
+#site-dif3:checked ~ .site-bar label[for="site-dif3"],
+#site-dpf1:checked ~ .site-bar label[for="site-dpf1"],
+#site-dpf2:checked ~ .site-bar label[for="site-dpf2"],
+#site-dwl1:checked ~ .site-bar label[for="site-dwl1"],
+#site-dbg2:checked ~ .site-bar label[for="site-dbg2"],
+#site-dlp2:checked ~ .site-bar label[for="site-dlp2"] {
+  color: #fff;
+  border-bottom-color: #0066cc;
+}
+
+/* Main Content */
+.main-content {
+  padding: 20px 24px;
+}
+
+/* Page Navigation */
+input[name="nav"] { display: none; }
+
+.nav-bar {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #e5e5e5;
+  margin-bottom: 24px;
+  background: #fff;
+  border-radius: 8px 8px 0 0;
+  padding: 0 8px;
+}
+
+.nav-bar label {
+  padding: 12px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.15s ease;
+}
+
+.nav-bar label:hover { color: #111; }
+
+#nav-matrix:checked ~ .nav-bar label[for="nav-matrix"],
+#nav-data:checked ~ .nav-bar label[for="nav-data"],
+#nav-alerts:checked ~ .nav-bar label[for="nav-alerts"],
+#nav-config:checked ~ .nav-bar label[for="nav-config"] {
+  color: #0066cc;
+  border-bottom-color: #0066cc;
+  font-weight: 600;
+}
+
+.page { display: none; }
+
+#nav-matrix:checked ~ .page-matrix,
+#nav-data:checked ~ .page-data,
+#nav-alerts:checked ~ .page-alerts,
+#nav-config:checked ~ .page-config {
+  display: block;
+}
+
+/* Cards */
+.card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.card-subtitle {
+  font-size: 12px;
+  color: #666;
+  margin: 4px 0 0 0;
+}
+
+/* Stats Row */
+.stats-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 14px 18px;
+  flex: 1;
+}
+
+.stat-label {
+  color: #666;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 26px;
+  font-weight: 700;
+  font-family: monospace;
+  color: #111;
+}
+
+.stat-value.warning { color: #d97706; }
+.stat-value.danger { color: #dc2626; }
+.stat-value.success { color: #15803d; }
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+th {
+  text-align: left;
+  color: #666;
+  font-weight: 500;
+  padding: 8px 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+td {
+  padding: 8px 10px;
+  color: #111;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+tr:hover td { background: #f8f9fa; }
+
+/* Skill Badges */
+.badge {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+  min-width: 18px;
+}
+
+.badge.e { background: #dcfce7; color: #15803d; }
+.badge.i { background: #dbeafe; color: #1d4ed8; }
+.badge.d { background: #fef3c7; color: #92400e; }
+.badge.x { background: #fee2e2; color: #dc2626; }
+.badge.none { background: #f3f4f6; color: #999; }
+
+/* Status */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.dot.green { background: #22c55e; }
+.dot.orange { background: #f59e0b; }
+.dot.red { background: #ef4444; }
+
+/* Forms */
+.form-section {
+  border: 1px dashed #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background: #fafbfc;
+}
+
+.form-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: #333;
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.form-group {
+  flex: 1;
+}
+
+.form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 13px;
+  font-family: inherit;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 0 2px rgba(0,102,204,0.1);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.btn-primary { background: #0066cc; color: #fff; }
+.btn-primary:hover { background: #0052a3; }
+.btn-danger { background: #fee2e2; color: #dc2626; border: 1px solid #fecaca; }
+.btn-secondary { background: #f3f4f6; color: #333; border: 1px solid #ddd; }
+.btn-success { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+
+/* Alert Items */
+.alert-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+
+.alert-item.urgent { background: #fef2f2; border: 1px solid #fecaca; }
+.alert-item.warning { background: #fffbeb; border: 1px solid #fde68a; }
+.alert-item .alert-icon { margin-right: 10px; font-size: 16px; }
+.alert-item .alert-text { flex: 1; }
+.alert-item .alert-days { font-family: monospace; font-weight: 600; font-size: 11px; padding: 2px 8px; border-radius: 3px; }
+.alert-item.urgent .alert-days { background: #fee2e2; color: #dc2626; }
+.alert-item.warning .alert-days { background: #fef3c7; color: #92400e; }
+
+/* Tabs inside data page */
+input[name="datatab"] { display: none; }
+
+.data-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.data-tabs label {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 20px;
+  cursor: pointer;
+  background: #f3f4f6;
+  color: #555;
+  transition: all 0.15s ease;
+}
+
+#datatab-people:checked ~ .data-tabs label[for="datatab-people"],
+#datatab-skills:checked ~ .data-tabs label[for="datatab-skills"] {
+  background: #0066cc;
+  color: #fff;
+}
+
+.data-section { display: none; }
+#datatab-people:checked ~ .data-people { display: block; }
+#datatab-skills:checked ~ .data-skills { display: block; }
+
+/* Config tabs */
+input[name="configtab"] { display: none; }
+
+.config-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.config-tabs label {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 20px;
+  cursor: pointer;
+  background: #f3f4f6;
+  color: #555;
+  transition: all 0.15s ease;
+}
+
+#configtab-sites:checked ~ .config-tabs label[for="configtab-sites"],
+#configtab-notif:checked ~ .config-tabs label[for="configtab-notif"],
+#configtab-options:checked ~ .config-tabs label[for="configtab-options"] {
+  background: #0066cc;
+  color: #fff;
+}
+
+.config-section { display: none; }
+#configtab-sites:checked ~ .config-sites { display: block; }
+#configtab-notif:checked ~ .config-notif { display: block; }
+#configtab-options:checked ~ .config-options { display: block; }
+
+/* Legend */
+.legend {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 11px;
+  color: #666;
+  flex-wrap: wrap;
+}
+
+.legend-item { display: flex; align-items: center; gap: 4px; }
+
+/* Site tag */
+.site-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f3f4f6;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 12px;
+  margin: 4px;
+}
+
+.site-tag .remove {
+  color: #dc2626;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .stats-row { flex-direction: column; }
+  .form-row { flex-direction: column; }
+  .site-bar label { padding: 8px 12px; font-size: 11px; }
+  .nav-bar label { padding: 10px 12px; font-size: 11px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card { animation: fadeIn 0.35s ease-out both; }
+  .stat-card { animation: fadeIn 0.3s ease-out both; }
+  .stat-card:nth-child(2) { animation-delay: 40ms; }
+  .stat-card:nth-child(3) { animation-delay: 80ms; }
+  .stat-card:nth-child(4) { animation-delay: 120ms; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP HEADER -->
+<div class="top-header">
+  <div class="brand">
+    <span class="amazon-logo">AMAZON</span>
+    <span class="rme-badge">RME</span>
+  </div>
+  <span class="cluster-badge">Cluster 3 — Skill Matrix</span>
+</div>
+
+<!-- SITE SELECTOR -->
+<input type="radio" name="site" id="site-global" checked>
+<input type="radio" name="site" id="site-dif3">
+<input type="radio" name="site" id="site-dpf1">
+<input type="radio" name="site" id="site-dpf2">
+<input type="radio" name="site" id="site-dwl1">
+<input type="radio" name="site" id="site-dbg2">
+<input type="radio" name="site" id="site-dlp2">
+
+<div class="site-bar">
+  <label for="site-global">Vue Globale</label>
+  <label for="site-dif3">DIF3</label>
+  <label for="site-dpf1">DPF1</label>
+  <label for="site-dpf2">DPF2</label>
+  <label for="site-dwl1">DWL1</label>
+  <label for="site-dbg2">DBG2</label>
+  <label for="site-dlp2">DLP2</label>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+<!-- PAGE NAVIGATION -->
+<input type="radio" name="nav" id="nav-matrix" checked>
+<input type="radio" name="nav" id="nav-data">
+<input type="radio" name="nav" id="nav-alerts">
+<input type="radio" name="nav" id="nav-config">
+
+<div class="nav-bar">
+  <label for="nav-matrix">Matrice</label>
+  <label for="nav-data">Donnees</label>
+  <label for="nav-alerts">Alertes</label>
+  <label for="nav-config">Configuration</label>
+</div>
+
+<!-- ==================== PAGE: MATRICE ==================== -->
+<div class="page page-matrix">
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-label">Techniciens</div>
+      <div class="stat-value">6</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Competences</div>
+      <div class="stat-value">12</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Expire bientot</div>
+      <div class="stat-value warning">3</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Expirees</div>
+      <div class="stat-value danger">1</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">Matrice des competences — DIF3</div>
+        <p class="card-subtitle">Derniere mise a jour : 22/06/2026</p>
+      </div>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><span class="badge e">E</span> Expert</div>
+      <div class="legend-item"><span class="badge i">I</span> Intermediaire</div>
+      <div class="legend-item"><span class="badge d">D</span> Debutant</div>
+      <div class="legend-item"><span class="badge x">X</span> Expire</div>
+      <div class="legend-item"><span class="badge none">—</span> Non forme</div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Technicien</th>
+            <th>Role</th>
+            <th>LOTO</th>
+            <th>Hauteur</th>
+            <th>B2V</th>
+            <th>BR</th>
+            <th>PLC</th>
+            <th>SST</th>
+            <th>Soudure</th>
+            <th>Pneum.</th>
+            <th>Hydrau.</th>
+            <th>Convoy.</th>
+            <th>CACES</th>
+            <th>Monitron</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Dimitrios K.</strong></td>
+            <td style="font-size:10px;color:#666;">RME Area Manager</td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge e">E</span></td>
+          </tr>
+          <tr>
+            <td><strong>Lucas M.</strong></td>
+            <td style="font-size:10px;color:#666;">RME Senior Tech</td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge none">—</span></td>
+            <td><span class="badge d">D</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge none">—</span></td>
+            <td><span class="badge d">D</span></td>
+            <td><span class="badge none">—</span></td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge d">D</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sarah B.</strong></td>
+            <td style="font-size:10px;color:#666;">RMET</td>
+            <td><span class="badge x">X</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge none">—</span></td>
+            <td><span class="badge none">—</span></td>
+            <td><span class="badge none">—</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge d">D</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge i">I</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mehdi A.</strong></td>
+            <td style="font-size:10px;color:#666;">RMET</td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge d">D</span></td>
+            <td><span class="badge none">—</span></td>
+            <td><span class="badge none">—</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge d">D</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge i">I</span></td>
+          </tr>
+          <tr>
+            <td><strong>Julie P.</strong></td>
+            <td style="font-size:10px;color:#666;">RMET</td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge none">—</span></td>
+            <td><span class="badge none">—</span></td>
+            <td><span class="badge none">—</span></td>
+            <td><span class="badge e">E</span></td>
+            <td><span class="badge d">D</span></td>
+            <td><span class="badge e">E</span></td>
+          </tr>
+          <tr>
+            <td><strong>Thomas R.</strong></td>
+            <td style="font-size:10px;color:#666;">Apprenti</td>
+            <td><span class="badge d">D</span></td>
+            <td><span class="badge d">D</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge none">—</span></td>
+            <td><span class="badge none">—</span></td>
+            <td><span class="badge d">D</span></td>
+            <td><span class="badge none">—</span></td>
+            <td><span class="badge none">—</span></td>
+            <td><span class="badge none">—</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge i">I</span></td>
+            <td><span class="badge d">D</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE: DONNEES ==================== -->
+<div class="page page-data">
+
+  <input type="radio" name="datatab" id="datatab-people" checked>
+  <input type="radio" name="datatab" id="datatab-skills">
+
+  <div class="data-tabs">
+    <label for="datatab-people">Personnes</label>
+    <label for="datatab-skills">Competences</label>
+  </div>
+
+  <!-- SUB-TAB: PERSONNES -->
+  <div class="data-section data-people">
+    <div class="form-section">
+      <div class="form-section-title">Ajouter une personne</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prenom</label>
+          <input type="text" placeholder="Ex: Jean">
+        </div>
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" placeholder="Ex: Dupont">
+        </div>
+        <div class="form-group">
+          <label>Role</label>
+          <select>
+            <option>RMET</option>
+            <option>RME Senior Tech</option>
+            <option>RME Area Manager</option>
+            <option>RME OP</option>
+            <option>Apprenti</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="prenom.nom@amazon.com">
+        </div>
+        <div class="form-group">
+          <label>Site</label>
+          <select>
+            <option>DIF3</option>
+            <option>DPF1</option>
+            <option>DPF2</option>
+            <option>DWL1</option>
+            <option>DBG2</option>
+            <option>DLP2</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Date d'arrivee</label>
+          <input type="date">
+        </div>
+      </div>
+      <span class="btn btn-primary">Ajouter</span>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Equipe DIF3 (6 personnes)</div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Role</th>
+            <th>Email</th>
+            <th>Arrivee</th>
+            <th>Statut</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-family:monospace;color:#666;">P001</td>
+            <td><strong>Dimitrios K.</strong></td>
+            <td>RME Area Manager</td>
+            <td>dimitrios@amazon.com</td>
+            <td>15/03/2021</td>
+            <td><span class="status"><span class="dot green"></span>Actif</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Supprimer</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:#666;">P002</td>
+            <td><strong>Lucas M.</strong></td>
+            <td>RME Senior Tech</td>
+            <td>lucas.m@amazon.com</td>
+            <td>02/09/2022</td>
+            <td><span class="status"><span class="dot green"></span>Actif</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Supprimer</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:#666;">P003</td>
+            <td><strong>Sarah B.</strong></td>
+            <td>RMET</td>
+            <td>sarah.b@amazon.com</td>
+            <td>10/01/2023</td>
+            <td><span class="status"><span class="dot red"></span>1 expire</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Supprimer</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:#666;">P004</td>
+            <td><strong>Mehdi A.</strong></td>
+            <td>RMET</td>
+            <td>mehdi.a@amazon.com</td>
+            <td>15/06/2023</td>
+            <td><span class="status"><span class="dot orange"></span>Expire bientot</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Supprimer</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:#666;">P005</td>
+            <td><strong>Julie P.</strong></td>
+            <td>RMET</td>
+            <td>julie.p@amazon.com</td>
+            <td>03/03/2024</td>
+            <td><span class="status"><span class="dot orange"></span>Expire bientot</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Supprimer</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:#666;">P006</td>
+            <td><strong>Thomas R.</strong></td>
+            <td>Apprenti</td>
+            <td>thomas.r@amazon.com</td>
+            <td>20/05/2024</td>
+            <td><span class="status"><span class="dot orange"></span>Expire bientot</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Supprimer</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SUB-TAB: COMPETENCES -->
+  <div class="data-section data-skills">
+    <div class="form-section">
+      <div class="form-section-title">Ajouter une competence</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nom de la competence</label>
+          <input type="text" placeholder="Ex: Soudure TIG">
+        </div>
+        <div class="form-group">
+          <label>Categorie</label>
+          <select>
+            <option>Securite</option>
+            <option>Electrique</option>
+            <option>Mecanique</option>
+            <option>Predictif</option>
+            <option>Logistique</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Validite (mois)</label>
+          <select>
+            <option>12 mois</option>
+            <option>24 mois</option>
+            <option>36 mois</option>
+            <option>60 mois</option>
+            <option>Pas d'expiration</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Lien formation (pour email de rappel)</label>
+          <input type="url" placeholder="https://formation.amazon.com/...">
+        </div>
+      </div>
+      <span class="btn btn-primary">Ajouter</span>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Catalogue des competences (12)</div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Competence</th>
+            <th>Categorie</th>
+            <th>Validite</th>
+            <th>Formes</th>
+            <th>Couverture</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-family:monospace;color:#666;">S001</td>
+            <td><strong>LOTO</strong></td>
+            <td>Securite</td>
+            <td>12 mois</td>
+            <td>6/6</td>
+            <td><span class="status"><span class="dot green"></span>100%</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Suppr.</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:#666;">S002</td>
+            <td><strong>Travail en hauteur</strong></td>
+            <td>Securite</td>
+            <td>24 mois</td>
+            <td>5/6</td>
+            <td><span class="status"><span class="dot orange"></span>83%</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Suppr.</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:#666;">S003</td>
+            <td><strong>Habilitation B2V</strong></td>
+            <td>Electrique</td>
+            <td>36 mois</td>
+            <td>6/6</td>
+            <td><span class="status"><span class="dot green"></span>100%</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Suppr.</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:#666;">S004</td>
+            <td><strong>Habilitation BR</strong></td>
+            <td>Electrique</td>
+            <td>36 mois</td>
+            <td>3/6</td>
+            <td><span class="status"><span class="dot orange"></span>50%</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Suppr.</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:#666;">S005</td>
+            <td><strong>Automates (PLC)</strong></td>
+            <td>Electrique</td>
+            <td>Pas d'exp.</td>
+            <td>4/6</td>
+            <td><span class="status"><span class="dot orange"></span>67%</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Suppr.</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:#666;">S006</td>
+            <td><strong>Premiers secours (SST)</strong></td>
+            <td>Securite</td>
+            <td>24 mois</td>
+            <td>5/6</td>
+            <td><span class="status"><span class="dot orange"></span>83%</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Suppr.</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:#666;">S007</td>
+            <td><strong>Soudure</strong></td>
+            <td>Mecanique</td>
+            <td>Pas d'exp.</td>
+            <td>2/6</td>
+            <td><span class="status"><span class="dot red"></span>33%</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Suppr.</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:#666;">S008</td>
+            <td><strong>Pneumatique</strong></td>
+            <td>Mecanique</td>
+            <td>Pas d'exp.</td>
+            <td>3/6</td>
+            <td><span class="status"><span class="dot orange"></span>50%</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Suppr.</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:#666;">S009</td>
+            <td><strong>Hydraulique</strong></td>
+            <td>Mecanique</td>
+            <td>Pas d'exp.</td>
+            <td>3/6</td>
+            <td><span class="status"><span class="dot orange"></span>50%</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Suppr.</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:#666;">S010</td>
+            <td><strong>Maintenance convoyeurs</strong></td>
+            <td>Mecanique</td>
+            <td>Pas d'exp.</td>
+            <td>6/6</td>
+            <td><span class="status"><span class="dot green"></span>100%</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Suppr.</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:#666;">S011</td>
+            <td><strong>CACES R489</strong></td>
+            <td>Logistique</td>
+            <td>60 mois</td>
+            <td>6/6</td>
+            <td><span class="status"><span class="dot green"></span>100%</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Suppr.</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:monospace;color:#666;">S012</td>
+            <td><strong>Monitron</strong></td>
+            <td>Predictif</td>
+            <td>Pas d'exp.</td>
+            <td>5/6</td>
+            <td><span class="status"><span class="dot orange"></span>83%</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Suppr.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE: ALERTES ==================== -->
+<div class="page page-alerts">
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">Alertes d'expiration</div>
+        <p class="card-subtitle">Email automatique envoye selon la configuration</p>
+      </div>
+      <span class="btn btn-secondary" style="font-size:11px;">Envoyer rappel maintenant</span>
+    </div>
+
+    <div class="alert-item urgent">
+      <span class="alert-icon" style="color:#dc2626;font-weight:700;">!</span>
+      <span class="alert-text"><strong>Sarah B.</strong> — LOTO <strong>EXPIRE</strong> depuis 402 jours</span>
+      <span class="alert-days">-402j</span>
+    </div>
+    <div class="alert-item warning">
+      <span class="alert-icon" style="color:#d97706;font-weight:700;">!</span>
+      <span class="alert-text"><strong>Julie P.</strong> — Travail en hauteur</span>
+      <span class="alert-days">20j</span>
+    </div>
+    <div class="alert-item warning">
+      <span class="alert-icon" style="color:#d97706;font-weight:700;">!</span>
+      <span class="alert-text"><strong>Mehdi A.</strong> — LOTO</span>
+      <span class="alert-days">37j</span>
+    </div>
+    <div class="alert-item warning">
+      <span class="alert-icon" style="color:#d97706;font-weight:700;">!</span>
+      <span class="alert-text"><strong>Thomas R.</strong> — LOTO</span>
+      <span class="alert-days">46j</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Historique des notifications</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Date envoi</th>
+          <th>Destinataire</th>
+          <th>Competence</th>
+          <th>Expiration</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>15/06/2026</td>
+          <td>Sarah B.</td>
+          <td>LOTO</td>
+          <td>16/05/2025</td>
+          <td><span class="status"><span class="dot red"></span>Non renouvele</span></td>
+        </tr>
+        <tr>
+          <td>22/06/2026</td>
+          <td>Julie P.</td>
+          <td>Travail en hauteur</td>
+          <td>12/07/2026</td>
+          <td><span class="status"><span class="dot orange"></span>En attente</span></td>
+        </tr>
+        <tr>
+          <td>22/06/2026</td>
+          <td>Mehdi A.</td>
+          <td>LOTO</td>
+          <td>29/07/2026</td>
+          <td><span class="status"><span class="dot orange"></span>En attente</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== PAGE: CONFIGURATION ==================== -->
+<div class="page page-config">
+
+  <input type="radio" name="configtab" id="configtab-sites" checked>
+  <input type="radio" name="configtab" id="configtab-notif">
+  <input type="radio" name="configtab" id="configtab-options">
+
+  <div class="config-tabs">
+    <label for="configtab-sites">Sites</label>
+    <label for="configtab-notif">Notifications</label>
+    <label for="configtab-options">Options supplementaires</label>
+  </div>
+
+  <!-- CONFIG: SITES -->
+  <div class="config-section config-sites">
+    <div class="form-section">
+      <div class="form-section-title">Ajouter un site</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Code du site</label>
+          <input type="text" placeholder="Ex: DXX1">
+        </div>
+        <div class="form-group">
+          <label>Adresse</label>
+          <input type="text" placeholder="Ex: 12 rue de la Paix, 75001 Paris">
+        </div>
+      </div>
+      <span class="btn btn-primary">Ajouter le site</span>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Sites du Cluster 3 (6 sites)</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Site</th>
+            <th>Techniciens</th>
+            <th>Alertes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>DIF3</strong></td>
+            <td>6</td>
+            <td><span class="status"><span class="dot red"></span>1 expire, 3 bientot</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Retirer</span></td>
+          </tr>
+          <tr>
+            <td><strong>DPF1</strong></td>
+            <td>0</td>
+            <td><span class="status"><span class="dot green"></span>Aucune</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Retirer</span></td>
+          </tr>
+          <tr>
+            <td><strong>DPF2</strong></td>
+            <td>0</td>
+            <td><span class="status"><span class="dot green"></span>Aucune</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Retirer</span></td>
+          </tr>
+          <tr>
+            <td><strong>DWL1</strong></td>
+            <td>0</td>
+            <td><span class="status"><span class="dot green"></span>Aucune</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Retirer</span></td>
+          </tr>
+          <tr>
+            <td><strong>DBG2</strong></td>
+            <td>0</td>
+            <td><span class="status"><span class="dot green"></span>Aucune</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Retirer</span></td>
+          </tr>
+          <tr>
+            <td><strong>DLP2</strong></td>
+            <td>0</td>
+            <td><span class="status"><span class="dot green"></span>Aucune</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Retirer</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CONFIG: NOTIFICATIONS -->
+  <div class="config-section config-notif">
+    <div class="card">
+      <div class="card-title">Parametres de notification</div>
+
+      <div class="form-group" style="margin-bottom:16px;">
+        <label>Jours avant expiration pour envoyer le rappel</label>
+        <select>
+          <option>7 jours</option>
+          <option>14 jours</option>
+          <option>21 jours</option>
+          <option selected>30 jours</option>
+          <option>45 jours</option>
+          <option>60 jours</option>
+          <option>90 jours</option>
+        </select>
+      </div>
+
+      <div class="form-group" style="margin-bottom:16px;">
+        <label>Destinataires supplementaires (en plus de la personne concernee)</label>
+        <input type="email" placeholder="Ajouter un email..." style="margin-bottom:8px;">
+        <div>
+          <span class="site-tag">dimitrios@amazon.com <span class="remove">x</span></span>
+        </div>
+        <p style="font-size:11px;color:#888;margin:8px 0 0 0;">La personne concernee recoit toujours le mail par defaut.</p>
+      </div>
+
+      <span class="btn btn-primary" style="margin-bottom:20px;">Ajouter un destinataire</span>
+
+      <div class="form-group" style="margin-bottom:16px;">
+        <label>Modele d'email</label>
+        <textarea>Bonjour {nom},
+
+Votre certification "{skill}" expire le {date_expiration}.
+
+Formations concernees :
+{liste_formations}
+
+Veuillez renouveler votre certification via le lien suivant :
+{lien_formation}
+
+Accedez a l'application Skill Matrix ici :
+{lien_application}
+
+Cordialement,
+L'equipe RME Cluster 3</textarea>
+      </div>
+
+      <div class="form-group" style="margin-bottom:16px;">
+        <label>Lien de l'application (inclus dans chaque email)</label>
+        <input type="url" placeholder="https://votre-username.github.io/skill-matrix-cluster3/">
+      </div>
+
+      <span class="btn btn-primary">Sauvegarder</span>
+    </div>
+  </div>
+
+  <!-- CONFIG: OPTIONS SUPPLEMENTAIRES -->
+  <div class="config-section config-options">
+    <div class="card">
+      <div class="card-title">Options supplementaires</div>
+      <p style="font-size:13px;color:#666;margin-top:0;">Ajoutez des fonctionnalites a votre application.</p>
+
+      <div class="form-section">
+        <div class="form-section-title">Ajouter une nouvelle option</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nom de l'option</label>
+            <input type="text" placeholder="Ex: Suivi des heures de formation">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" placeholder="Ex: Tracker le nombre d'heures par personne">
+          </div>
+        </div>
+        <span class="btn btn-primary">Ajouter l'option</span>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>Description</th>
+            <th>Statut</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Export PDF</strong></td>
+            <td>Exporter la matrice en PDF pour impression</td>
+            <td><span class="status"><span class="dot green"></span>Actif</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Retirer</span></td>
+          </tr>
+          <tr>
+            <td><strong>Historique des formations</strong></td>
+            <td>Voir l'historique complet par personne</td>
+            <td><span class="status"><span class="dot green"></span>Actif</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Retirer</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mode sombre</strong></td>
+            <td>Theme sombre pour l'application</td>
+            <td><span class="status"><span class="dot orange"></span>Inactif</span></td>
+            <td><span class="btn btn-danger" style="padding:4px 8px;font-size:10px;">Retirer</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
